@@ -264,18 +264,18 @@ Response:
 #### October 15: Design Phase
 - Choose a color palette - Check
 - Select typography for the application - Check
-- Create mockups for the main pages (Home Page, Event List Page, Event Details Page, Create an Order Page).
+- Create mockups for the main pages (Home Page, Event List Page, Event Details Page, Create an Order Page) - x
 
 #### October 16: Initial Setup and Basic Functionality
 - Set up the project repository and initial React application - Check
-- Design and set up the initial JSON data structure and initial server set up.
-- Implement the Home Page with role selection.
+- Implement the Home Page with role selection - Check
 
 #### October 17: Create Order Form (Frontend)
 - Develop the Create an Order Page with all form inputs (location, quantity of people, event date, etc.).
 - Implement checkboxes and dropdowns for food and beverage options.
 
 #### October 18: Create Order Endpoint (Backend)
+- Design and set up the initial JSON data structure and initial server set up
 - Develop the POST endpoint for creating an order.
 - Test the Create an Order Page with the backend to ensure data is correctly saved.
 
@@ -322,6 +322,7 @@ Response:
 7) Menu Management for Managers: Add a page where managers can edit menus, add new menus, and add menu items. This will also require the menu table.
 8) Dietary Restrictions: Include a section for clients to specify dietary restrictions.
 9) Add footer with tools used to build the application. 
+10) Add Toastify to tell information to users.
 
 
 
