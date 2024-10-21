@@ -52,7 +52,11 @@ Event Hub will have two types of users: event hosts and event managers.
 
 ### Tech Stack
 
-* Front-End: React, CSS, SASS, react-toastify
+* Front-End: React, CSS, SASS???, react-toastify.
+  - https://ui.shadcn.com/
+  - https://tailwindcss.com/
+  - https://www.radix-ui.com/icons
+  
 * Back-End: NodeJS, REST API, Express
 
 ### APIs
@@ -103,7 +107,13 @@ Description: Only accessible by clients. This page contains a form for creating 
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+## STYLE
+
+* Logo created on Canvas software - https://www.canva.com/
+* Pallete colors chosen from coolors - https://coolors.co/
+* Typography - Google fonts (Poppins) - https://fonts.google.com/
+* Icons - https://fonts.google.com/icons
+* Mockup - ????
 
 ### Data
 
@@ -252,12 +262,12 @@ Response:
 ## Roadmap
 
 #### October 15: Design Phase
-- Choose a color palette. 
-- Select typography for the application.
+- Choose a color palette - Check
+- Select typography for the application - Check
 - Create mockups for the main pages (Home Page, Event List Page, Event Details Page, Create an Order Page).
 
 #### October 16: Initial Setup and Basic Functionality
-- Set up the project repository and initial React application.
+- Set up the project repository and initial React application - Check
 - Design and set up the initial JSON data structure and initial server set up.
 - Implement the Home Page with role selection.
 
@@ -311,5 +321,10 @@ Response:
 6) Menu Page for Clients: Add a page where clients can view all menu items and dietary restrictions. This will require an additional table called menu.
 7) Menu Management for Managers: Add a page where managers can edit menus, add new menus, and add menu items. This will also require the menu table.
 8) Dietary Restrictions: Include a section for clients to specify dietary restrictions.
+9) Add footer with tools used to build the application. 
+
+
+
+
 
 
