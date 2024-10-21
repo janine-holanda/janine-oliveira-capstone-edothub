@@ -1,12 +1,22 @@
-import { Button } from "@/components/ui/button";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import OrderDashboardPage from "./pages/OrderDashboardPage/OrderDashboardPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
+import CreateOrderPage from "./pages/CreateOrderPage/CreateOrderPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 export default function App() {
   return (
     <>
-      <h1 className="text-3xl font-normal underline bg-slate-500 ">
-        Gg Ll Tt Yy
-      </h1>
-      <Button variant="outline">Button</Button>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<OrderDashboardPage />} />
+          <Route path="/dashboard/:id" element={<OrderDetailsPage />} />
+          <Route path="/createorder" element={<CreateOrderPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
