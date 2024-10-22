@@ -1,0 +1,192 @@
+[
+    {
+        "id": "1",
+        "category": "Beverages",  
+        "menu": [
+          {
+            "id": "1",
+            "item": "Coffee"
+          },
+          {
+            "id": "2",
+            "item": "Decaf"
+          },
+          {
+             "id": "3",
+            "item": "Water"
+          },
+          {
+             "id": "4",
+            "item": "Tea"
+          },
+          {
+             "id": "5",
+            "item": "Juice"
+          },
+          {
+             "id": "6",
+            "item": "Pop"
+          },
+          {
+             "id": "7",
+            "item": "Sparkling Water"
+          }
+        ]
+      },
+    {
+        "id": "2",
+        "category": "Breakfast",  
+        "menu": [
+          {
+            "id": "1",
+            "item": "Continental Breakfast 1",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Pastries"
+                },
+                {
+                    "id": 2,
+                    "item": "Muffins"
+                }
+            ]
+          },
+          {
+            "id": "2",
+            "item": "Continental Breakfast 2",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Pastries"
+                },
+                {
+                    "id": 2,
+                    "item": "Muffins"
+                },
+                {
+                    "id": 3,
+                    "item": "Fruits"
+                }
+            ]
+          },
+          {
+            "id": "3",
+            "item": "Continental Breakfast 3",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Pastries"
+                },
+                {
+                    "id": 2,
+                    "item": "Muffins"
+                },
+                {
+                    "id": 3,
+                    "item": "Fruits"
+                },
+                {
+                    "id": 4,
+                    "item": "Yogurt"
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "category": "Am Break",  
+        "menu": [
+          {
+            "id": "1",
+            "item": "Cookies",
+            "subitems": []
+          },
+          {
+            "id": "2",
+            "item": "Fruits",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "category": "Lunch",  
+        "menu": [
+          {
+            "id": "1",
+            "item": "Cold Buffet 1",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Leaf Salad"
+                },
+                {
+                    "id": 2,
+                    "item": "Heart Salad"
+                },
+                {
+                    "id": 3,
+                    "item": "Sandwiches & Wraps"
+                }
+            ]
+          },
+          {
+            "id": "2",
+            "item": "Cold Buffet 2",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Leaf Salad"
+                },
+                {
+                    "id": 2,
+                    "item": "Heart Salad"
+                },
+                {
+                    "id": 3,
+                    "item": "Pizza"
+                }
+            ]
+          },
+          {
+            "id": "3",
+            "item": "Hot Buffet 1",
+            "subitems": [
+                {
+                    "id": 1,
+                    "item": "Leaf Salad"
+                },
+                {
+                    "id": 2,
+                    "item": "Heart Salad"
+                },
+                {
+                    "id": 3,
+                    "item": "Poached Salmon"
+                },
+                {
+                    "id": 4,
+                    "item": "Marinated Chicken"
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "category": "Pm Break",  
+        "menu": [
+          {
+            "id": "1",
+            "item": "Cookies",
+            "subitems": []
+          },
+          {
+            "id": "2",
+            "item": "Snacks",
+            "subitems": []
+          }
+        ]
+      }
+  ]
