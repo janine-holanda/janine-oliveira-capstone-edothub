@@ -1,92 +1,128 @@
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-export default function EventDetailsForm() {
+import { formatTime, todayDate } from "../../utils/functions";
+export default function EventDetailsForm({ order, setOrder }) {
+  const handleChangeEventName = (event) => {
+    setOrder({ ...order, event_name: event.target.value.trimStart() });
+  };
+  const handleChangeHostName = (event) => {
+    setOrder({ ...order, host_name: event.target.value.trimStart() });
+  };
+  const handleChangeLocation = (event) => {
+    setOrder({ ...order, location: event.target.value.trimStart() });
+  };
+  const handleChangeNumberOfGuests = (event) => {
+    setOrder({ ...order, number_of_guests: event.target.value.trimStart() });
+  };
+  const handleChangeEventDate = (event) => {
+    setOrder({ ...order, event_date: event.target.value });
+  };
+  const handleChangeEventStartTime = (event) => {
+    setOrder({ ...order, event_start_time: event.target.value });
+  };
+  const handleChangeEventEndTime = (event) => {
+    setOrder({ ...order, event_end_time: event.target.value });
+  };
+
   return (
-    <section>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4 ml-1">
-        <Label htmlFor="eventName" className="text-xs text-slate-500">
-          Event Name
-        </Label>
-        <Input
-          id="eventName"
-          placeholder="Add an event name"
-          className="w-full focus-visible:ring-e-navy focus-within:border-0 "
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4 ml-1">
-        <Label htmlFor="hostName" className="text-xs text-slate-500">
-          Host Name
-        </Label>
-        <Input
-          id="hostName"
-          placeholder="Add the host name"
-          className="focus-visible:ring-e-navy focus-within:border-0"
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4 ml-1">
-        <Label htmlFor="location" className="text-xs text-slate-500">
-          Location (Room)
-        </Label>
-        <Input
-          id="location"
-          placeholder="Add the event location/room"
-          className="focus-visible:ring-e-navy focus-within:border-0"
-        />
-      </div>
-      <RadioGroup
-        defaultValue="outside"
-        className="mb-4  ml-1 flex items-center space-x-2"
-      >
-        <div className="space-x-2">
-          <RadioGroupItem value="outside" id="outside" />
-          <Label htmlFor="outside">Outside</Label>
+    <section className="grid grid-cols-2 gap-4">
+      <div className="grid w-auto col-span-2">
+        <div className="grid w-auto items-center gap-1.5 ml-1">
+          <Label htmlFor="eventName" className="text-xs text-slate-500">
+            Event Name
+          </Label>
+          <input
+            id="eventName"
+            placeholder="Add an event name"
+            className="input"
+            onChange={handleChangeEventName}
+            value={order.event_name}
+          ></input>
         </div>
-        <div className="space-x-2">
-          <RadioGroupItem value="inside" id="inside" />
-          <Label htmlFor="inside">Inside</Label>
+      </div>
+      <div className="grid w-auto col-span-2">
+        <div className="grid w-auto items-center gap-1.5 ml-1">
+          <Label htmlFor="hostName" className="text-xs text-slate-500">
+            Host Name
+          </Label>
+          <input
+            id="hostName"
+            placeholder="Add a host name"
+            className="input"
+            onChange={handleChangeHostName}
+            value={order.host_name}
+          ></input>
         </div>
-      </RadioGroup>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4  ml-1">
-        <Label htmlFor="guestsQty" className="text-xs text-slate-500">
+      </div>
+      <div className="grid w-auto col-span-2">
+        <div className="grid w-auto items-center gap-1.5 ml-1">
+          <Label htmlFor="location" className="text-xs text-slate-500">
+            Location (Room)
+          </Label>
+          <input
+            id="location"
+            placeholder="Add the event location (room)"
+            className="input"
+            onChange={handleChangeLocation}
+            value={order.location}
+          ></input>
+        </div>
+      </div>
+      <div className="grid w-fit max-w-sm items-center gap-1.5 ml-1">
+        <Label htmlFor="numberGuests" className="text-xs text-slate-500">
           Guests
         </Label>
-        <Input
-          id="guestsQty"
-          placeholder="Add guests quantity"
+        <input
+          id="numberGuests"
           type="number"
-          className="focus-visible:ring-e-navy focus-within:border-0"
-        />
+          min="1"
+          max="300"
+          placeholder="Qty"
+          className="input w-14"
+          onChange={handleChangeNumberOfGuests}
+          value={order.number_of_guests}
+        ></input>
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4  ml-1">
-        <Label htmlFor="date" className="text-xs text-slate-500">
+      <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4  ml-1">
+        <Label htmlFor="eventDate" className="text-xs text-slate-500">
           Date
         </Label>
-        <Input
-          id="date"
+        <input
+          id="eventDate"
           type="date"
-          className="w-fit focus-visible:ring-e-navy focus-within:border-0"
-        />
+          min={todayDate()}
+          max="300"
+          className="input w-fit"
+          onChange={handleChangeEventDate}
+          value={order.event_date}
+        ></input>
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4  ml-1">
+      <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1">
         <Label htmlFor="startTime" className="text-xs text-slate-500">
           Start Time
         </Label>
-        <Input
+        <input
           id="startTime"
           type="time"
-          className="w-fit focus-visible:ring-e-navy focus-within:border-0"
-        />
+          min={formatTime("6:00")}
+          max={formatTime("20:00")}
+          className="input w-fit"
+          onChange={handleChangeEventStartTime}
+          value={order.event_start_time}
+        ></input>
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5 mb-4  ml-1">
+      <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4  ml-1">
         <Label htmlFor="endTime" className="text-xs text-slate-500">
           End Time
         </Label>
-        <Input
+        <input
           id="endTime"
           type="time"
-          className="w-fit focus-visible:ring-e-navy focus-within:border-0"
-        />
+          min={formatTime("6:30")}
+          max={formatTime("22:00")}
+          className="input w-fit"
+          onChange={handleChangeEventEndTime}
+          value={order.event_end_time}
+        ></input>
       </div>
     </section>
   );
