@@ -1,0 +1,33 @@
+[
+    {
+        "order_id": 1,
+        "location": "Conference Room A",
+        "number_of_guests": 50,
+        "event_date": "2024-10-20",
+        "event_start_time": "09:00",
+        "event_end_time": "17:00",
+        "event_name": "Annual Meeting",
+        "host_name": "John Doe",
+        "breakfast": true,
+        "am_break": false,
+        "lunch": true,
+        "pm_break": false,
+        "beverage_options": {
+            "coffee": true,
+            "water": true,
+            "pops": false,
+            "juices": true,
+            "sparkling_water": false,
+            "tea": true,
+            "decaf": false
+        },
+        "food_menus": {
+            "breakfast_menu": "Continental 1",
+            "am_break_menu": null,
+            "lunch_menu": "Buffet 1",
+            "pm_break_menu": null
+        },
+        "status": "Reviewing",
+        "timestamp": "2024-10-15T10:00:00Z"      
+      }
+]
