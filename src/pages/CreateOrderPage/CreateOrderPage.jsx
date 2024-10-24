@@ -1,18 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import data from "../../data/order.json";
-import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+
 import { formatTime, todayDate } from "../../utils/functions";
-import BeveragesForm from "@/components/BeveragesForm/BeveragesForm";
-import FoodForm from "@/components/FoodForm/ FoodForm";
-import EventDetailsForm from "@/components/EventDetailsForm/EventDetailsForm";
-import EventServiceForm from "@/components/EventServiceForm/ EventServiceForm";
+
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, Zoom, toast } from "react-toastify";
+import OrderForm from "@/components/OrderForm/ OrderForm";
 
 export default function CreateOrderPage({ isEventHost }) {
   const navigate = useNavigate();
@@ -31,13 +25,29 @@ export default function CreateOrderPage({ isEventHost }) {
     event_date: todayDate(),
     event_start_time: formatTime("6:00"),
     event_end_time: formatTime("6:30"),
-    isBreakfast: true,
-    isAmBreak: false,
-    isLunch: false,
-    isPmBreak: false,
+    hasBreakfast: true,
+    hasAmBreak: false,
+    hasLunch: false,
+    hasPmBreak: false,
+    beverage_options: {
+      hasCoffee: false,
+      hasWater: true,
+      hasPop: false,
+      hasJuice: false,
+      hasSparklingWater: false,
+      hasTea: false,
+      hasDecaf: false,
+    },
+    service_options: {
+      breakfast_menu: "Continental Breakfast 1",
+      am_break_menu: "Fruits",
+      lunch_menu: "Cold Buffet 1",
+      pm_break_menu: "Cookies",
+    },
   };
 
   const [order, setOrder] = useState(defaultValues);
+  const isFormEditDisabled = false;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,90 +60,61 @@ export default function CreateOrderPage({ isEventHost }) {
       event_date: order.event_date,
       event_start_time: order.event_start_time,
       event_end_time: order.event_end_time,
-      isBreakfast: order.isBreakfast,
-      isAmBreak: order.isAmBreak,
-      isLunch: order.isLunch,
-      isPmBreak: order.isPmBreak,
+      hasBreakfast: order.hasBreakfast,
+      hasAmBreak: order.hasAmBreak,
+      hasLunch: order.hasLunch,
+      hasPmBreak: order.hasPmBreak,
+      beverage_options: {
+        hasCoffee: order.beverage_options.hasCoffee,
+        hasWater: order.beverage_options.hasWater,
+        hasPop: order.beverage_options.hasPop,
+        hasJuice: order.beverage_options.hasJuice,
+        hasSparklingWater: order.beverage_options.hasSparklingWater,
+        hasTea: order.beverage_options.hasTea,
+        hasDecaf: order.beverage_options.hasDecaf,
+      },
+      service_options: {
+        breakfast_menu: order.service_options.breakfast_menu,
+        am_break_menu: order.service_options.am_break_menu,
+        lunch_menu: order.service_options.lunch_menu,
+        pm_break_menu: order.service_options.pm_break_menu,
+      },
+      status: "New Order",
+      timestamp: Date.now(),
     };
     data.push(newOrder);
     console.log(data);
+    setOrder(defaultValues);
+    toast.success("Your order was successfully sent", {
+      // onClose: () => navigate("/"),
+      transition: Zoom,
+    });
+  };
+  const handleCancel = (event) => {
+    event.preventDefault();
+    setOrder(defaultValues);
+    toast.info("You canceled the order", {
+      onClose: () => navigate("/"),
+      transition: Zoom,
+    });
   };
 
   if (isEventHost) {
     return (
-      <form onSubmit={handleSubmit} className="p-4 bg-slate-100">
-        <Accordion type="single" collapsible className="w-auto">
-          <AccordionItem value="eventDetails">
-            <AccordionTrigger className="text-2xl mb-4">
-              Event Details
-            </AccordionTrigger>
-            <AccordionContent>
-              <EventDetailsForm setOrder={setOrder} order={order} />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="serviceDetails">
-            <AccordionTrigger className="text-2xl mb-4">
-              Event Service
-            </AccordionTrigger>
-            <AccordionContent>
-              <EventServiceForm setOrder={setOrder} order={order} />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Breakfast">
-            <AccordionTrigger
-              className={`text-2xl mb-4 ${
-                order.isBreakfast ? "visible" : "invisible"
-              }`}
-            >
-              Breakfast
-            </AccordionTrigger>
-            <AccordionContent>
-              <BeveragesForm />
-              <FoodForm service="Breakfast" />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Am Break">
-            <AccordionTrigger
-              className={`text-2xl mb-4 ${
-                order.isAmBreak ? "visible" : "invisible"
-              }`}
-            >
-              Am Break
-            </AccordionTrigger>
-            <AccordionContent>
-              <BeveragesForm />
-              <FoodForm service="Am Break" />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Lunch">
-            <AccordionTrigger
-              className={`text-2xl mb-4 ${
-                order.isLunch ? "visible" : "invisible"
-              }`}
-            >
-              Lunch
-            </AccordionTrigger>
-            <AccordionContent>
-              <BeveragesForm />
-              <FoodForm service="Lunch" />
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="Pm Break">
-            <AccordionTrigger
-              className={`text-2xl mb-4 ${
-                order.isPmBreak ? "visible" : "invisible"
-              }`}
-            >
-              Pm Break
-            </AccordionTrigger>
-            <AccordionContent>
-              <BeveragesForm />
-              <FoodForm service="Pm Break" />
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Button type="submit">Create an Order</Button>
-      </form>
+      <>
+        <OrderForm
+          handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
+          setOrder={setOrder}
+          order={order}
+          isFormEditDisabled={isFormEditDisabled}
+        />
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          pauseOnHover={false}
+        />
+      </>
     );
   }
 }
