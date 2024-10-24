@@ -1,31 +1,36 @@
 import { Label } from "@/components/ui/label";
 
-export default function EventServiceForm({ order, setOrder }) {
-  const handleChangeIsBreakfast = (event) => {
-    setOrder({ ...order, isBreakfast: event.target.checked });
+export default function EventServiceForm({
+  order,
+  setOrder,
+  isFormEditDisabled,
+}) {
+  const handleChangeHasBreakfast = (event) => {
+    setOrder({ ...order, hasBreakfast: event.target.checked });
   };
-  const handleChangeIsAmBreak = (event) => {
-    setOrder({ ...order, isAmBreak: event.target.checked });
+  const handleChangeHasAmBreak = (event) => {
+    setOrder({ ...order, hasAmBreak: event.target.checked });
   };
-  const handleChangeIsLunch = (event) => {
-    setOrder({ ...order, isLunch: event.target.checked });
+  const handleChangeHasLunch = (event) => {
+    setOrder({ ...order, hasLunch: event.target.checked });
   };
-  const handleChangeIsPmBreak = (event) => {
-    setOrder({ ...order, isPmBreak: event.target.checked });
+  const handleChangeHasPmBreak = (event) => {
+    setOrder({ ...order, hasPmBreak: event.target.checked });
   };
   return (
     <section className="grid grid-cols-4 gap-4">
       <div className="flex items-center space-x-2">
         <input
-          id="isBreakfast"
+          id="hasBreakfast"
           type="checkbox"
-          name="isBreakfast"
+          name="hasBreakfast"
           className="checkbox"
-          checked={order.isBreakfast}
-          onChange={handleChangeIsBreakfast}
+          checked={order.hasBreakfast}
+          onChange={handleChangeHasBreakfast}
+          disabled={isFormEditDisabled}
         ></input>
         <Label
-          htmlFor="isBreakfast"
+          htmlFor="hasBreakfast"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Breakfast
@@ -33,15 +38,16 @@ export default function EventServiceForm({ order, setOrder }) {
       </div>
       <div className="flex items-center space-x-2">
         <input
-          id="isAmBreak"
+          id="hasAmBreak"
           type="checkbox"
-          name="isAmBreak"
+          name="hasAmBreak"
           className="checkbox"
-          checked={order.isAmBreak}
-          onChange={handleChangeIsAmBreak}
+          checked={order.hasAmBreak}
+          onChange={handleChangeHasAmBreak}
+          disabled={isFormEditDisabled}
         ></input>
         <Label
-          htmlFor="isAmBreak"
+          htmlFor="hasAmBreak"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Am Break
@@ -49,15 +55,16 @@ export default function EventServiceForm({ order, setOrder }) {
       </div>
       <div className="flex items-center space-x-2">
         <input
-          id="isLunch"
+          id="hasLunch"
           type="checkbox"
-          name="isLunch"
+          name="hasLunch"
           className="checkbox"
-          checked={order.isLunch}
-          onChange={handleChangeIsLunch}
+          checked={order.hasLunch}
+          onChange={handleChangeHasLunch}
+          disabled={isFormEditDisabled}
         ></input>
         <Label
-          htmlFor="isLunch"
+          htmlFor="hasLunch"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Lunch
@@ -65,15 +72,16 @@ export default function EventServiceForm({ order, setOrder }) {
       </div>
       <div className="flex items-center space-x-2">
         <input
-          id="isPmBreak"
+          id="hasPmBreak"
           type="checkbox"
-          name="isPmBreak"
+          name="hasPmBreak"
           className="checkbox"
-          checked={order.isPmBreak}
-          onChange={handleChangeIsPmBreak}
+          checked={order.hasPmBreak}
+          onChange={handleChangeHasPmBreak}
+          disabled={isFormEditDisabled}
         ></input>
         <Label
-          htmlFor="isPmBreak"
+          htmlFor="hasPmBreak"
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Pm Break
