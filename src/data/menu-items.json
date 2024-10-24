@@ -5,41 +5,49 @@
         "menu": [
           {
             "id": "1",
-            "item": "Coffee"
+            "item_description": "Coffee",
+            "item_name": "hasCoffee"
           },
           {
             "id": "2",
-            "item": "Decaf"
+            "item_description": "Decaf",
+            "item_name": "hasDecaf"
           },
           {
-             "id": "3",
-            "item": "Water"
+            "id": "3",
+            "item_description": "Water",
+            "item_name": "hasWater"
           },
           {
              "id": "4",
-            "item": "Tea"
+             "item_description": "Tea",
+            "item_name": "hasTea"
           },
           {
              "id": "5",
-            "item": "Juice"
+             "item_description": "Juice",
+            "item_name": "hasJuice"
           },
           {
              "id": "6",
-            "item": "Pop"
+             "item_description": "Pop",
+            "item_name": "hasPop"
           },
           {
              "id": "7",
-            "item": "Sparkling Water"
+             "item_description": "Sparkling Water",
+            "item_name": "hasSparklingWater"
           }
         ]
       },
     {
         "id": "2",
-        "category": "Breakfast",  
+        "category": "Breakfast", 
+        "category_name": "breakfast_menu", 
         "menu": [
           {
             "id": "1",
-            "item": "Continental Breakfast 1",
+            "item_description": "Continental Breakfast 1",
             "subitems": [
                 {
                     "id": 1,
@@ -53,7 +61,7 @@
           },
           {
             "id": "2",
-            "item": "Continental Breakfast 2",
+            "item_description": "Continental Breakfast 2",
             "subitems": [
                 {
                     "id": 1,
@@ -71,7 +79,7 @@
           },
           {
             "id": "3",
-            "item": "Continental Breakfast 3",
+            "item_description": "Continental Breakfast 3",
             "subitems": [
                 {
                     "id": 1,
@@ -95,27 +103,29 @@
       },
       {
         "id": "3",
-        "category": "Am Break",  
+        "category": "Am Break",
+        "category_name": "am_break_menu",   
         "menu": [
           {
             "id": "1",
-            "item": "Cookies",
+            "item_description": "Fruits",
             "subitems": []
           },
           {
             "id": "2",
-            "item": "Fruits",
+            "item_description": "Snacks",
             "subitems": []
           }
         ]
       },
       {
         "id": "4",
-        "category": "Lunch",  
+        "category": "Lunch",
+        "category_name": "lunch_menu",  
         "menu": [
           {
             "id": "1",
-            "item": "Cold Buffet 1",
+            "item_description": "Cold Buffet 1",
             "subitems": [
                 {
                     "id": 1,
@@ -133,7 +143,7 @@
           },
           {
             "id": "2",
-            "item": "Cold Buffet 2",
+            "item_description": "Cold Buffet 2",
             "subitems": [
                 {
                     "id": 1,
@@ -151,7 +161,7 @@
           },
           {
             "id": "3",
-            "item": "Hot Buffet 1",
+            "item_description": "Hot Buffet 1",
             "subitems": [
                 {
                     "id": 1,
@@ -175,16 +185,17 @@
       },
       {
         "id": "4",
-        "category": "Pm Break",  
+        "category": "Pm Break", 
+        "category_name": "pm_break_menu", 
         "menu": [
           {
             "id": "1",
-            "item": "Cookies",
+            "item_description": "Cookies",
             "subitems": []
           },
           {
             "id": "2",
-            "item": "Snacks",
+            "item_description": "Snacks",
             "subitems": []
           }
         ]

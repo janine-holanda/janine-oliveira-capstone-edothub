@@ -1,33 +1,31 @@
 [
     {
         "order_id": 1,
-        "location": "Conference Room A",
-        "number_of_guests": 50,
-        "event_date": "2024-10-20",
-        "event_start_time": "09:00",
-        "event_end_time": "17:00",
-        "event_name": "Annual Meeting",
-        "host_name": "John Doe",
-        "breakfast": true,
-        "am_break": false,
-        "lunch": true,
-        "pm_break": false,
+        "event_name": "Anniversary",
+        "host_name": "Jane Jow",
+        "location": "Room A",
+        "number_of_guests": 300,
+        "event_date": "2024/10/22",
+        "event_start_time": "6:00",
+        "event_end_time": "6:30",
+        "hasBreakfast": true,
+        "hasAmBreak": false,
+        "hasLunch": false,
+        "hasPmBreak": false,
         "beverage_options": {
-            "coffee": true,
-            "water": true,
-            "pops": false,
-            "juices": true,
-            "sparkling_water": false,
-            "tea": true,
-            "decaf": false
+          "hasCoffee": false,
+          "hasWater": true,
+          "hasPop": false,
+          "hasJuice": false,
+          "hasSparklingWater": false,
+          "hasTea": false,
+         "hasDecaf": false
         },
-        "food_menus": {
-            "breakfast_menu": "Continental 1",
-            "am_break_menu": null,
-            "lunch_menu": "Buffet 1",
-            "pm_break_menu": null
-        },
-        "status": "Reviewing",
-        "timestamp": "2024-10-15T10:00:00Z"      
+        "service_options": {
+          "breakfast_menu": "Continental Breakfast 1",
+          "am_break_menu": "Fruits",
+         "lunch_menu": "Cold Buffet 1",
+          "pm_break_menu": "Cookies"
+        }
       }
 ]
