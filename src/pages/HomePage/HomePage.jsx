@@ -3,18 +3,26 @@ import { PersonIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, Zoom, toast } from "react-toastify";
 
 export default function HomePage({ setIsEventHost }) {
   const navigate = useNavigate();
 
   const handleHost = () => {
     setIsEventHost(true);
-    navigate("/dashboard");
+    toast.success("Welcome, Event Host", {
+      onClose: () => navigate("/dashboard"),
+      transition: Zoom,
+    });
   };
 
   const handleManager = () => {
     setIsEventHost(false);
-    navigate("/dashboard");
+    toast.success("Welcome, Event Manager", {
+      onClose: () => navigate("/dashboard"),
+      transition: Zoom,
+    });
   };
 
   return (
@@ -51,6 +59,11 @@ export default function HomePage({ setIsEventHost }) {
           </Button>
         </div>
       </section>
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        pauseOnHover={false}
+      />
     </section>
   );
 }
