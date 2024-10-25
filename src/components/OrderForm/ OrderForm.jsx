@@ -13,16 +13,17 @@ import { Separator } from "@/components/ui/separator";
 
 export default function OrderForm({
   handleSubmit,
+  textHandleSubmit,
   handleCancel,
   setOrder,
   order,
   isFormEditDisabled,
 }) {
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-slate-100">
+    <form onSubmit={handleSubmit} className="bg-slate-50">
       <Accordion type="single" collapsible className="w-auto">
         <AccordionItem value="eventDetails">
-          <AccordionTrigger className="text-2xl mb-4">
+          <AccordionTrigger className="text-xl mb-4">
             Event Details
           </AccordionTrigger>
           <AccordionContent>
@@ -34,7 +35,7 @@ export default function OrderForm({
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="serviceDetails">
-          <AccordionTrigger className="text-2xl mb-4">
+          <AccordionTrigger className="text-xl mb-4">
             Event Services
           </AccordionTrigger>
           <AccordionContent>
@@ -51,7 +52,7 @@ export default function OrderForm({
             />
             <Separator className="mt-4 mb-4 bg-slate-200" />
             <div
-              className={`text-2xl mb-4 ${
+              className={`text-xl mb-4 ${
                 order.hasBreakfast ? "block" : "hidden"
               }`}
             >
@@ -64,7 +65,7 @@ export default function OrderForm({
               <Separator className="mt-4 mb-4 bg-slate-200" />
             </div>
             <div
-              className={`text-2xl mb-4 ${
+              className={`text-xl mb-4 ${
                 order.hasAmBreak ? "block" : "hidden"
               }`}
             >
@@ -77,7 +78,7 @@ export default function OrderForm({
               <Separator className="mt-4 mb-4 bg-slate-200" />
             </div>
             <div
-              className={`text-2xl mb-4 ${order.hasLunch ? "block" : "hidden"}`}
+              className={`text-xl mb-4 ${order.hasLunch ? "block" : "hidden"}`}
             >
               <FoodForm
                 service="Lunch"
@@ -88,7 +89,7 @@ export default function OrderForm({
               <Separator className="mt-4 mb-4 bg-slate-200" />
             </div>
             <div
-              className={`text-2xl mb-4 ${
+              className={`text-xl mb-4 ${
                 order.hasPmBreak ? "block" : "hidden"
               }`}
             >
@@ -102,8 +103,17 @@ export default function OrderForm({
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div className="flex justify-between mt-4">
-        <Button type="submit">+Add an Order</Button>
+      <div
+        className={`flex justify-between mt-4 ${
+          isFormEditDisabled ? "hidden" : ""
+        }`}
+      >
+        <Button
+          type="submit"
+          className="bg-e-wine hover:bg-e-wine hover:opacity-90"
+        >
+          {textHandleSubmit}
+        </Button>
         <Button variant="outline" onClick={handleCancel}>
           Cancel
         </Button>
