@@ -15,6 +15,7 @@ export default {
         "e-rose": "#9D6381",
         "e-sun": "#DDD78D",
         "e-navy": "#253D5B",
+        "e-baby-pink": "#FFD3DB",
       },
       fontFamily: {
         sans: ["Poppins"],
