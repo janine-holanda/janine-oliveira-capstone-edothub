@@ -99,7 +99,6 @@ Description: Only accessible by clients. This page contains a form for creating 
 * Event end time
 * Event name
 * Host name
-* Radio input for outside or inside the room
 * Checkboxes for breakfast, AM break, lunch, and PM break. Each checkbox (e.g., breakfast) opens a section with more options:
 * Beverage options: Coffee, water, pops, juices, sparkling water, tea, decaf
 * Food options: Dropdown menu to choose the menu, with menu items displayed next to the dropdown. Clients can see but not choose individual items.
@@ -122,13 +121,12 @@ Columns:
 
 * order_id (Primary Key): Unique identifier for each order
 * location: Room where the event will happen
-* quantity_of_people: Number of people attending the event
+* number_of_guests: Number of people attending the event
 * event_date: Date of the event
 * event_start_time: Start time of the event
 * event_end_time: End time of the event
 * event_name: Name of the event
 * host_name: Name of the event host
-* inside_or_outside: Indicates if the event is inside or outside the room
 * breakfast: Boolean indicating if breakfast is included
 * am_break: Boolean indicating if AM break is included
 * lunch: Boolean indicating if lunch is included
@@ -183,7 +181,6 @@ Response:
   "event_end_time": "17:00",
   "event_name": "Annual Meeting",
   "host_name": "John Doe",
-  "inside_or_outside": "inside",
   "breakfast": true,
   "am_break": false,
   "lunch": true,
