@@ -31,7 +31,7 @@ export default function EventDetailsForm({
     <section className="grid grid-cols-2 gap-4">
       <div className="grid w-auto col-span-2">
         <div className="grid w-auto items-center gap-1.5 ml-1 mr-1">
-          <Label htmlFor="eventName" className="text-xs text-slate-500">
+          <Label htmlFor="eventName" className="text-xs text-slate-800">
             Event Name
           </Label>
           <input
@@ -46,7 +46,7 @@ export default function EventDetailsForm({
       </div>
       <div className="grid w-auto col-span-2">
         <div className="grid w-auto items-center gap-1.5 ml-1 mr-1">
-          <Label htmlFor="hostName" className="text-xs text-slate-500">
+          <Label htmlFor="hostName" className="text-xs text-slate-800">
             Host Name
           </Label>
           <input
@@ -61,7 +61,7 @@ export default function EventDetailsForm({
       </div>
       <div className="grid w-auto col-span-2">
         <div className="grid w-auto items-center gap-1.5 ml-1 mr-1">
-          <Label htmlFor="location" className="text-xs text-slate-500">
+          <Label htmlFor="location" className="text-xs text-slate-800">
             Location (Room)
           </Label>
           <input
@@ -75,7 +75,7 @@ export default function EventDetailsForm({
         </div>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 ml-1 mr-1">
-        <Label htmlFor="numberGuests" className="text-xs text-slate-500">
+        <Label htmlFor="numberGuests" className="text-xs text-slate-800">
           Guests
         </Label>
         <input
@@ -91,7 +91,7 @@ export default function EventDetailsForm({
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
-        <Label htmlFor="eventDate" className="text-xs text-slate-500">
+        <Label htmlFor="eventDate" className="text-xs text-slate-800">
           Date
         </Label>
         <input
@@ -106,7 +106,7 @@ export default function EventDetailsForm({
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
-        <Label htmlFor="startTime" className="text-xs text-slate-500">
+        <Label htmlFor="startTime" className="text-xs text-slate-800">
           Start Time
         </Label>
         <input
@@ -121,7 +121,7 @@ export default function EventDetailsForm({
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
-        <Label htmlFor="endTime" className="text-xs text-slate-500">
+        <Label htmlFor="endTime" className="text-xs text-slate-800">
           End Time
         </Label>
         <input

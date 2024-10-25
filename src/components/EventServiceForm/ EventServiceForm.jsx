@@ -31,7 +31,7 @@ export default function EventServiceForm({
         ></input>
         <Label
           htmlFor="hasBreakfast"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-xs text-slate-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Breakfast
         </Label>
@@ -48,7 +48,7 @@ export default function EventServiceForm({
         ></input>
         <Label
           htmlFor="hasAmBreak"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-xs text-slate-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Am Break
         </Label>
@@ -65,7 +65,7 @@ export default function EventServiceForm({
         ></input>
         <Label
           htmlFor="hasLunch"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-xs text-slate-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Lunch
         </Label>
@@ -82,7 +82,7 @@ export default function EventServiceForm({
         ></input>
         <Label
           htmlFor="hasPmBreak"
-          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          className="text-xs text-slate-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           Pm Break
         </Label>
