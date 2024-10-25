@@ -16,7 +16,9 @@ export default function BeveragesForm({ order, setOrder, isFormEditDisabled }) {
 
   return (
     <section className="mb-4">
-      <h2 className="text-center underline mb-4">Beverages</h2>
+      <h2 className="text-center underline mb-4 text-lg font-medium">
+        Beverages
+      </h2>
       <div className="grid grid-cols-4 gap-4">
         {beverageMenuItems.map((menuItem) => {
           return (
@@ -32,7 +34,7 @@ export default function BeveragesForm({ order, setOrder, isFormEditDisabled }) {
               ></input>
               <Label
                 htmlFor={menuItem.item_name}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-xs text-slate-800 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {menuItem.item_description}
               </Label>
