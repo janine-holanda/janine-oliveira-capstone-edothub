@@ -20,14 +20,16 @@ export default function FoodForm({
 
   return (
     <section className="mb-4">
-      <h2 className="text-center underline mb-4">{`${service} Menu`} </h2>
+      <h2 className="text-center underline mb-4 text-lg font-medium">
+        {`${service} Menu`}{" "}
+      </h2>
       <div className="flex justify-center">
         <select
           value={order.service_options[foodService.category_name]}
           onChange={(e) => handleChange(e, foodService.category_name)}
           disabled={isFormEditDisabled}
           placeholder="Select Menu"
-          className="w-fit inline-flex h-[35px] items-center justify-center gap-[5px] rounded bg-white px-[15px] text-[13px] leading-none text-e-rose shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-e-wine focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-e-rose"
+          className="w-fit inline-flex h-[35px] items-center justify-center gap-[5px] rounded bg-white px-[15px] text-[13px] leading-none text-slate-800 shadow-[0_2px_10px] shadow-black/10 outline-none hover:bg-e-rose focus:shadow-[0_0_0_1px] focus:shadow-e-wine data-[placeholder]:text-e-rose hover:text-slate-50"
         >
           {foodServiceMenu.map((menuItem) => {
             return (
