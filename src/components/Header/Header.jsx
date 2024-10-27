@@ -1,7 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import logoImage from "../../assets/logo/edothub-logo-30px.svg";
-import clientIcon from "../../assets/icons/person_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
-import managementTeamIcon from "../../assets/icons/groups_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
+import clientIcon from "../../assets/icons/person_24dp_FFD3DB_FILL0_wght400_GRAD0_opsz24.svg";
+import managementTeamIcon from "../../assets/icons/manage_accounts_24dp_FFD3DB_FILL0_wght400_GRAD0_opsz24.svg";
 
 export default function Header({ isEventHost }) {
   const { pathname } = useLocation();
@@ -9,14 +9,19 @@ export default function Header({ isEventHost }) {
 
   return (
     <header className="pt-4 pl-4 pr-4 bg-gradient-to-t from-rose-900 to-e-wine relative">
-      <div className="p-1 border-e-pink-100 border-2 rounded-2xl w-fit fill-e-baby-pink absolute right-4">
-        <img
-          src={isEventHost ? clientIcon : managementTeamIcon}
-          alt="Client Icon"
-          className="fill-e-baby-pink h-4"
-        />
+      <div className="absolute right-4 flex gap-x-2 items-center">
+        <div className="p-1 border-e-baby-pink border-2 rounded-2xl w-fit">
+          <img
+            src={isEventHost ? clientIcon : managementTeamIcon}
+            alt="Client Icon"
+            className="h-4 fill-current stroke-slate-100"
+          />
+        </div>
+        <p className="p1 text-e-baby-pink ">
+          {isEventHost ? "Event Host" : "Event Manager"}
+        </p>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-4">
         <Link to="/" className="">
           <img className="h-16" src={logoImage} alt="E.Hub Logo" />
         </Link>
