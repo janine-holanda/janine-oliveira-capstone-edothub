@@ -16,6 +16,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Footer from "@/components/Footer/Footer";
+import OrderStatus from "@/components/OrderStatus/ OrderStatus";
+import { fetchOrderDetails, updateOrder } from "../../services/order-api";
 
 export default function OrderDetailsPage({ isEventHost }) {
   const navigate = useNavigate();
@@ -28,28 +31,58 @@ export default function OrderDetailsPage({ isEventHost }) {
   }, [isEventHost, navigate]);
 
   if (isEventHost !== null) {
-    const orderToDisplay = () => {
-      const findOrder = data.find(
-        (orderItem) => orderItem.order_id === orderId
-      );
-      return {
-        ...findOrder,
-        event_start_time: formatTime(findOrder.event_start_time),
-        event_end_time: formatTime(findOrder.event_end_time),
-      };
+    const [isOrderLoading, setIsOrderLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [order, setOrder] = useState(null);
+    const [isFormEditDisabled, setIsFormEditDisabled] = useState(true);
+    const putOrder = async (newOrder, order_id) => {
+      try {
+        await updateOrder(newOrder, order_id);
+        setError("");
+      } catch (error) {
+        setError(error.message);
+      }
     };
 
-    const [order, setOrder] = useState(orderToDisplay);
-    const [isFormEditDisabled, setIsFormEditDisabled] = useState(true);
+    const getOrder = async (order_id) => {
+      try {
+        const response = await fetchOrderDetails(order_id);
+        const formatedResponse = {
+          ...response,
+          event_start_time: formatTime(response.event_start_time),
+          event_end_time: formatTime(response.event_end_time),
+        };
+
+        setError("");
+        setOrder(formatedResponse);
+        setIsOrderLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setIsOrderLoading(false);
+      }
+    };
+
+    useEffect(() => {
+      getOrder(orderId);
+    }, [orderId]);
+
+    if (isOrderLoading) {
+      return (
+        <div className="">
+          <div className=""></div>
+          <h1 className="">ORDER IS LOADING...</h1>
+        </div>
+      );
+    }
+
+    if (error) {
+      return <h1 className="">{error.toUpperCase()}</h1>;
+    }
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      const editOrder = data.filter(
-        (orderItem) => orderItem.order_id !== orderId
-      );
 
-      let newOrder = {
-        order_id: orderId,
+      const newOrder = {
         event_name: order.event_name,
         host_name: order.host_name,
         location: order.location,
@@ -76,11 +109,10 @@ export default function OrderDetailsPage({ isEventHost }) {
           lunch_menu: order.service_options.lunch_menu,
           pm_break_menu: order.service_options.pm_break_menu,
         },
-        status: "Order Edited",
-        timestamp: order.timestamp,
+        status: "Modified",
+        created_timestamp: order.timestamp,
       };
-      editOrder.push(newOrder);
-      setOrder(newOrder);
+      putOrder(newOrder, orderId);
       setIsFormEditDisabled(true);
       toast.success("Your order was successfully changed", {
         transition: Zoom,
@@ -93,7 +125,8 @@ export default function OrderDetailsPage({ isEventHost }) {
     };
     const handleCancel = (event) => {
       event.preventDefault();
-      setOrder(orderToDisplay);
+      getOrder(orderId);
+      setIsFormEditDisabled(true);
       toast.info("You didn't save the order", {
         transition: Zoom,
       });
@@ -102,12 +135,12 @@ export default function OrderDetailsPage({ isEventHost }) {
     return (
       <>
         <Header isEventHost={isEventHost} />
-        <div className="pl-4 pr-4 pb-4 bg-pink-50">
-          <div className="shadow bg-slate-50 p-4">
+        <div className="pl-4 pr-4 pb-4 bg-pink-50 h-screen">
+          <div className="shadow bg-slate-50 p-4 rounded-b-xl">
             <div className="w-full flex justify-between">
               <Link
                 to="/dashboard"
-                className="border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:focus-visible:ring-slate-300 px-1"
+                className="border border-slate-200 bg-white shadow-sm hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 dark:focus-visible:ring-slate-300 px-2"
               >
                 <img src={arrowBackIcon} alt="Client Icon" />
               </Link>
@@ -118,6 +151,13 @@ export default function OrderDetailsPage({ isEventHost }) {
               >
                 <img src={editFormIcon} alt="Client Icon" />
               </Button>
+            </div>
+            <div className="border-[1px] rounded-md border-slate-300 p-2 mt-4 flex justify-between items-center">
+              <div className="flex gap-x-2 ">
+                <h3>Order Id: </h3>
+                <p className="p1">{order.order_id}</p>
+              </div>
+              <OrderStatus status={order.status} />
             </div>
             <OrderForm
               handleSubmit={handleSubmit}
@@ -138,6 +178,7 @@ export default function OrderDetailsPage({ isEventHost }) {
               </AccordionItem>
             </Accordion>
           </div>
+          <Footer />
         </div>
         <ToastContainer
           position="top-center"
