@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import data from "../../data/order.json";
-
 import { formatTime, todayDate } from "../../utils/functions";
-
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import OrderForm from "@/components/OrderForm/ OrderForm";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import { addOrder } from "../../services/order-api";
 
 export default function CreateOrderPage({ isEventHost }) {
   const navigate = useNavigate();
@@ -46,16 +45,25 @@ export default function CreateOrderPage({ isEventHost }) {
       pm_break_menu: "Cookies",
     },
     status: "New Order",
-    timestamp: 0,
+    created_timestamp: 0,
   };
 
   const [order, setOrder] = useState(defaultValues);
+  const [error, setError] = useState("");
   const isFormEditDisabled = false;
+
+  const postOrder = async (newOrder) => {
+    try {
+      await addOrder(newOrder);
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newOrder = {
-      order_id: `${data.length + 1}`,
+    const newOrder = {
       event_name: order.event_name,
       host_name: order.host_name,
       location: order.location,
@@ -83,30 +91,34 @@ export default function CreateOrderPage({ isEventHost }) {
         pm_break_menu: order.service_options.pm_break_menu,
       },
       status: order.status,
-      timestamp: Date.now(),
     };
-    data.push(newOrder);
+    postOrder(newOrder);
     setOrder(defaultValues);
     toast.success("Your order was successfully sent", {
       // onClose: () => navigate("/"),
       transition: Zoom,
     });
   };
+
   const handleCancel = (event) => {
     event.preventDefault();
     setOrder(defaultValues);
     toast.info("You canceled the order", {
-      onClose: () => navigate("/"),
+      onClose: () => navigate("/dashboard"),
       transition: Zoom,
     });
   };
+
+  if (error) {
+    return <h1 className="">{error.toUpperCase()}</h1>;
+  }
 
   if (isEventHost) {
     return (
       <>
         <Header isEventHost={isEventHost} />
-        <div className="pl-4 pr-4 pb-4 bg-pink-50">
-          <div className="shadow bg-slate-50 p-4">
+        <div className="pl-4 pr-4 pb-4 bg-pink-50 h-screen">
+          <div className="shadow bg-slate-50 p-4 rounded-b-xl">
             <OrderForm
               handleSubmit={handleSubmit}
               textHandleSubmit="+ Add an Order"
@@ -116,7 +128,9 @@ export default function CreateOrderPage({ isEventHost }) {
               isFormEditDisabled={isFormEditDisabled}
             />
           </div>
+          <Footer />
         </div>
+
         <ToastContainer
           position="top-center"
           autoClose={1500}
