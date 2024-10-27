@@ -40,7 +40,7 @@ export default function EventDetailsForm({
             className="input"
             onChange={handleChangeEventName}
             value={order.event_name}
-            disabled={isFormEditDisabled}
+            readOnly={isFormEditDisabled}
           ></input>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function EventDetailsForm({
             className="input"
             onChange={handleChangeHostName}
             value={order.host_name}
-            disabled={isFormEditDisabled}
+            readOnly={isFormEditDisabled}
           ></input>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function EventDetailsForm({
             className="input"
             onChange={handleChangeLocation}
             value={order.location}
-            disabled={isFormEditDisabled}
+            readOnly={isFormEditDisabled}
           ></input>
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function EventDetailsForm({
           className="input w-14"
           onChange={handleChangeNumberOfGuests}
           value={order.number_of_guests}
-          disabled={isFormEditDisabled}
+          readOnly={isFormEditDisabled}
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
@@ -102,7 +102,7 @@ export default function EventDetailsForm({
           className="input w-fit"
           onChange={handleChangeEventDate}
           value={order.event_date}
-          disabled={isFormEditDisabled}
+          readOnly={isFormEditDisabled}
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
@@ -117,7 +117,7 @@ export default function EventDetailsForm({
           className="input w-fit"
           onChange={handleChangeEventStartTime}
           value={order.event_start_time}
-          disabled={isFormEditDisabled}
+          readOnly={isFormEditDisabled}
         ></input>
       </div>
       <div className="grid w-fit max-w-sm items-center gap-1.5 mb-4 ml-1 mr-1">
@@ -132,7 +132,7 @@ export default function EventDetailsForm({
           className="input w-fit"
           onChange={handleChangeEventEndTime}
           value={order.event_end_time}
-          disabled={isFormEditDisabled}
+          readOnly={isFormEditDisabled}
         ></input>
       </div>
     </section>
