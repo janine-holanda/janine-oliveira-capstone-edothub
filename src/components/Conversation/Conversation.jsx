@@ -1,18 +1,56 @@
-// import avatarImage from "../../assets/images/Mohan-muruge.jpg";
-// import Avatar from "../Avatar/Avatar";
 import CommentList from "../CommentList/CommentList";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import commentsData from "../../data/comments.json";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { addOrderComment, fetchOrderComments } from "../../services/order-api";
+import { ToastContainer, Zoom, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export default function Conversation({ orderId, isEventHost }) {
+  const navigate = useNavigate();
   const defaultValues = {
     name: "",
     comment: "",
     role: isEventHost ? "Event Host" : "Event Manager",
   };
+  const [error, setError] = useState("");
   const [conversation, setConversation] = useState(defaultValues);
+  const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+  const [comments, setComments] = useState(null);
+
+  const postComment = async (newComment, orderId) => {
+    try {
+      await addOrderComment(newComment, orderId);
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const getComments = async (orderId) => {
+    try {
+      const response = await fetchOrderComments(orderId);
+
+      setError("");
+      setComments(response);
+      setIsCommentsLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setIsCommentsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getComments(orderId);
+  }, [orderId]);
+
+  if (isCommentsLoading) {
+    return (
+      <div className="">
+        <div className=""></div>
+        <h1 className="">COMMENTS LIST IS LOADING...</h1>
+      </div>
+    );
+  }
 
   const handleChange = (event, inputName) => {
     setConversation({
@@ -24,24 +62,31 @@ export default function Conversation({ orderId, isEventHost }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newComment = {
-      id: `${commentsData.length + 1}`,
       order_id: orderId,
       name: conversation.name,
       role: conversation.role,
       comment: conversation.comment,
-      timestamp: Date.now(),
     };
-    commentsData.push(newComment);
-    console.log("commentsData", commentsData);
-
+    postComment(newComment, orderId);
     setConversation(defaultValues);
+    toast.success("Your comment was successfully sent", {
+      // onClose: () => navigate("/"),
+      transition: Zoom,
+    });
+    getComments(orderId);
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
     setConversation(defaultValues);
+    toast.info("You canceled your comment", {
+      onClose: () => navigate(`/dashboard/${orderId}`),
+      transition: Zoom,
+    });
   };
-
+  if (error) {
+    return <h1 className="">{error.toUpperCase()}</h1>;
+  }
   return (
     <section>
       <form onSubmit={handleSubmit}>
@@ -85,7 +130,12 @@ export default function Conversation({ orderId, isEventHost }) {
           </Button>
         </div>
       </form>
-      <CommentList orderId={orderId} />
+      <CommentList comments={comments} />
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        pauseOnHover={false}
+      />
     </section>
   );
 }
