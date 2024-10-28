@@ -78,12 +78,11 @@ export default function Conversation({ orderId, isEventHost }) {
       comment: conversation.comment,
     };
 
-    postComment(newComment, orderId);
-
     setConversation(defaultValues);
 
     toast.success("Your comment was successfully sent", {
       transition: Zoom,
+      onClose: () => postComment(newComment, orderId),
     });
   };
 
