@@ -1,17 +1,18 @@
 import imageLogo from "../../assets/logo/edothub-logo-30px.svg";
+import clientIcon from "../../assets/icons/person_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
+import managementTeamIcon from "../../assets/icons/manage_accounts_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
+
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, Zoom, toast } from "react-toastify";
-import clientIcon from "../../assets/icons/person_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
-import managementTeamIcon from "../../assets/icons/manage_accounts_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 
 export default function HomePage({ setIsEventHost }) {
   const navigate = useNavigate();
 
   const handleHost = () => {
     setIsEventHost(true);
+
     toast.success("Welcome, Event Host", {
       onClose: () => navigate("/dashboard"),
       transition: Zoom,
@@ -20,6 +21,7 @@ export default function HomePage({ setIsEventHost }) {
 
   const handleManager = () => {
     setIsEventHost(false);
+
     toast.success("Welcome, Event Manager", {
       onClose: () => navigate("/dashboard"),
       transition: Zoom,

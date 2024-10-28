@@ -8,15 +8,19 @@ export default function EventServiceForm({
   const handleChangeHasBreakfast = (event) => {
     setOrder({ ...order, hasBreakfast: event.target.checked });
   };
+
   const handleChangeHasAmBreak = (event) => {
     setOrder({ ...order, hasAmBreak: event.target.checked });
   };
+
   const handleChangeHasLunch = (event) => {
     setOrder({ ...order, hasLunch: event.target.checked });
   };
+
   const handleChangeHasPmBreak = (event) => {
     setOrder({ ...order, hasPmBreak: event.target.checked });
   };
+
   return (
     <section className="grid grid-cols-4 gap-4">
       <div className="flex items-center space-x-2">

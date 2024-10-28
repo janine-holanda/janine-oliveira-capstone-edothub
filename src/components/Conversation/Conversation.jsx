@@ -1,40 +1,46 @@
 import CommentList from "../CommentList/CommentList";
+
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { addOrderComment, fetchOrderComments } from "../../services/order-api";
 import { ToastContainer, Zoom, toast } from "react-toastify";
+
 export default function Conversation({ orderId, isEventHost }) {
   const defaultValues = {
     name: "",
     comment: "",
     role: isEventHost ? "Event Host" : "Event Manager",
   };
-  const [error, setError] = useState("");
-  const [conversation, setConversation] = useState(defaultValues);
-  const [isCommentsLoading, setIsCommentsLoading] = useState(true);
-  const [comments, setComments] = useState(null);
 
-  const postComment = async (newComment, orderId) => {
-    try {
-      await addOrderComment(newComment, orderId);
-      getComments(orderId);
-      setError("");
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  const [conversation, setConversation] = useState(defaultValues);
+  const [comments, setComments] = useState(null);
+  const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const getComments = async (orderId) => {
     try {
       setIsCommentsLoading(true);
+
       const response = await fetchOrderComments(orderId);
+
       setError("");
       setComments(response);
     } catch (error) {
       setError(error.message);
     } finally {
       setIsCommentsLoading(false);
+    }
+  };
+
+  const postComment = async (newComment, orderId) => {
+    try {
+      await addOrderComment(newComment, orderId);
+
+      getComments(orderId);
+      setError("");
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -64,13 +70,17 @@ export default function Conversation({ orderId, isEventHost }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newComment = {
       name: conversation.name,
       role: conversation.role,
       comment: conversation.comment,
     };
+
     postComment(newComment, orderId);
+
     setConversation(defaultValues);
+
     toast.success("Your comment was successfully sent", {
       transition: Zoom,
     });
@@ -78,7 +88,9 @@ export default function Conversation({ orderId, isEventHost }) {
 
   const handleCancel = (event) => {
     event.preventDefault();
+
     setConversation(defaultValues);
+
     toast.info("You canceled your comment", {
       transition: Zoom,
     });

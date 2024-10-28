@@ -7,7 +7,9 @@ export default function FoodForm({
   isFormEditDisabled,
 }) {
   const foodService = menuItems.find((item) => item.category === service);
+
   const foodServiceMenu = foodService.menu;
+
   const handleChange = (event, categoryName) => {
     setOrder({
       ...order,

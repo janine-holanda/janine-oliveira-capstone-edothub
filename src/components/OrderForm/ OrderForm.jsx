@@ -1,3 +1,8 @@
+import BeveragesForm from "@/components/BeveragesForm/BeveragesForm";
+import FoodForm from "@/components/FoodForm/ FoodForm";
+import EventDetailsForm from "@/components/EventDetailsForm/EventDetailsForm";
+import EventServiceForm from "@/components/EventServiceForm/ EventServiceForm";
+
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -5,10 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import BeveragesForm from "@/components/BeveragesForm/BeveragesForm";
-import FoodForm from "@/components/FoodForm/ FoodForm";
-import EventDetailsForm from "@/components/EventDetailsForm/EventDetailsForm";
-import EventServiceForm from "@/components/EventServiceForm/ EventServiceForm";
 import { Separator } from "@/components/ui/separator";
 
 export default function OrderForm({

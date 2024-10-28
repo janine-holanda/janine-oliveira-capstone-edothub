@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { formatTime, todayDate } from "../../utils/functions";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, Zoom, toast } from "react-toastify";
 import OrderForm from "@/components/OrderForm/ OrderForm";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { formatTime, todayDate } from "../../utils/functions";
+import { ToastContainer, Zoom, toast } from "react-toastify";
 import { addOrder } from "../../services/order-api";
 
 export default function CreateOrderPage({ isEventHost }) {
@@ -45,11 +45,11 @@ export default function CreateOrderPage({ isEventHost }) {
       pm_break_menu: "Cookies",
     },
     status: "New Order",
-    created_timestamp: 0,
   };
 
   const [order, setOrder] = useState(defaultValues);
   const [error, setError] = useState("");
+
   const isFormEditDisabled = false;
 
   const postOrder = async (newOrder) => {
@@ -63,6 +63,7 @@ export default function CreateOrderPage({ isEventHost }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newOrder = {
       event_name: order.event_name,
       host_name: order.host_name,
@@ -92,17 +93,22 @@ export default function CreateOrderPage({ isEventHost }) {
       },
       status: order.status,
     };
+
     postOrder(newOrder);
+
     setOrder(defaultValues);
+
     toast.success("Your order was successfully sent", {
-      // onClose: () => navigate("/"),
+      onClose: () => navigate("/dashboard"),
       transition: Zoom,
     });
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
+
     setOrder(defaultValues);
+
     toast.info("You canceled the order", {
       onClose: () => navigate("/dashboard"),
       transition: Zoom,

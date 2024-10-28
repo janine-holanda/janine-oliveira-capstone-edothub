@@ -1,11 +1,12 @@
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import acceptOrderIcon from "../../assets/icons/task_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import declineOrderIcon from "../../assets/icons/scan_delete_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import cancelOrderIcon from "../../assets/icons/delete_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
-import { useState } from "react";
 import OrderStatus from "../OrderStatus/ OrderStatus";
+
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 import { updateOrder, cancelOrder } from "../../services/order-api";
 
 export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
@@ -15,8 +16,11 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
   const putOrder = async (newOrder, orderId) => {
     try {
       await updateOrder(newOrder, orderId);
+
       setDisplayedOrder(newOrder);
+
       getOrdersList();
+
       setError("");
     } catch (error) {
       setError(error.message);
@@ -26,7 +30,9 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
   const deleteOrder = async (orderId) => {
     try {
       await cancelOrder(orderId);
+
       getOrdersList();
+
       setError("");
     } catch (error) {
       setError(error.message);
@@ -35,24 +41,28 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
 
   const handleAccept = (event) => {
     event.preventDefault();
+
     const newOrder = { ...order, status: "Accepted" };
     putOrder(newOrder, order.order_id);
   };
 
   const handleDeclined = (event) => {
     event.preventDefault();
+
     const newOrder = { ...order, status: "Declined" };
     putOrder(newOrder, order.order_id);
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
+
     deleteOrder(order.order_id);
   };
 
   if (error) {
     return <h1 className="">{error.toUpperCase()}</h1>;
   }
+
   return (
     <article className="border-[1px] rounded-lg border-e-cloud p-4 grid grid-cols-2 gap-y-4 hover:bg-yellow-100 cursor-pointer mb-4">
       <div className="flex gap-x-2 col-span-2 justify-end">

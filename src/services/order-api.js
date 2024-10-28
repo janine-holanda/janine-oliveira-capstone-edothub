@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   formatTimestampToString,
   formatTimestampToStringLong,
@@ -21,6 +22,7 @@ export const fetchOrdersList = async () => {
 
 export const addOrder = async (newOrder) => {
   const { data } = await axios.post(`${API_URL}:${PORT}/api/orders`, newOrder);
+
   return data;
 };
 
@@ -41,6 +43,7 @@ export const updateOrder = async (updatedOrder, order_id) => {
     `${API_URL}:${PORT}/api/orders/${order_id}`,
     updatedOrder
   );
+
   return data;
 };
 
@@ -48,6 +51,7 @@ export const cancelOrder = async (order_id) => {
   const { data } = await axios.delete(
     `${API_URL}:${PORT}/api/orders/${order_id}`
   );
+
   return data;
 };
 
@@ -69,5 +73,6 @@ export const addOrderComment = async (newComment, order_id) => {
     `${API_URL}:${PORT}/api/orders/${order_id}/comments`,
     newComment
   );
+
   return data;
 };

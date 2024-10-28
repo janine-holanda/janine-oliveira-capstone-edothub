@@ -1,7 +1,8 @@
-import { useLocation, Link } from "react-router-dom";
 import logoImage from "../../assets/logo/edothub-logo-30px.svg";
 import clientIcon from "../../assets/icons/person_24dp_FFD3DB_FILL0_wght400_GRAD0_opsz24.svg";
 import managementTeamIcon from "../../assets/icons/manage_accounts_24dp_FFD3DB_FILL0_wght400_GRAD0_opsz24.svg";
+
+import { useLocation, Link } from "react-router-dom";
 
 export default function Header({ isEventHost }) {
   const { pathname } = useLocation();

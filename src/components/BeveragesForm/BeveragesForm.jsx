@@ -1,9 +1,11 @@
 import menuItems from "../../data/menu-items.json";
+
 import { Label } from "@/components/ui/label";
 
 export default function BeveragesForm({ order, setOrder, isFormEditDisabled }) {
   const beverageMenu = menuItems.find((item) => item.category === "Beverages");
   const beverageMenuItems = beverageMenu.menu;
+
   const handleChange = (event, itemName) => {
     setOrder({
       ...order,

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+
 import HomePage from "./pages/HomePage/HomePage";
 import OrderDashboardPage from "./pages/OrderDashboardPage/OrderDashboardPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
@@ -28,7 +29,10 @@ export default function App() {
             path="/createorder"
             element={<CreateOrderPage isEventHost={isEventHost} />}
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="*"
+            element={<NotFoundPage isEventHost={isEventHost} />}
+          />
         </Routes>
       </BrowserRouter>
     </>

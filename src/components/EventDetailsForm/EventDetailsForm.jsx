@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { formatTime, todayDate } from "../../utils/functions";
+
 export default function EventDetailsForm({
   order,
   setOrder,
@@ -8,21 +9,27 @@ export default function EventDetailsForm({
   const handleChangeEventName = (event) => {
     setOrder({ ...order, event_name: event.target.value.trimStart() });
   };
+
   const handleChangeHostName = (event) => {
     setOrder({ ...order, host_name: event.target.value.trimStart() });
   };
+
   const handleChangeLocation = (event) => {
     setOrder({ ...order, location: event.target.value.trimStart() });
   };
+
   const handleChangeNumberOfGuests = (event) => {
     setOrder({ ...order, number_of_guests: event.target.value.trimStart() });
   };
+
   const handleChangeEventDate = (event) => {
     setOrder({ ...order, event_date: event.target.value });
   };
+
   const handleChangeEventStartTime = (event) => {
     setOrder({ ...order, event_start_time: event.target.value });
   };
+
   const handleChangeEventEndTime = (event) => {
     setOrder({ ...order, event_end_time: event.target.value });
   };
