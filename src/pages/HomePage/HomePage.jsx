@@ -1,4 +1,5 @@
 import imageLogo from "../../assets/logo/edothub-logo-30px.svg";
+import "react-toastify/dist/ReactToastify.css";
 import clientIcon from "../../assets/icons/person_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import managementTeamIcon from "../../assets/icons/manage_accounts_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 

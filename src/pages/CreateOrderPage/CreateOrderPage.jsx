@@ -1,6 +1,7 @@
 import OrderForm from "@/components/OrderForm/ OrderForm";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";

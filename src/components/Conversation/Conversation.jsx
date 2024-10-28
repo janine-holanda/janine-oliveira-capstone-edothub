@@ -1,4 +1,5 @@
 import CommentList from "../CommentList/CommentList";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -134,7 +135,11 @@ export default function Conversation({ orderId, isEventHost }) {
           >
             Send
           </Button>
-          <Button variant="outline" onClick={handleCancel} className="mr-1">
+          <Button
+            variant="outline"
+            onClick={handleCancel}
+            className="mr-1 hover:bg-slate-200"
+          >
             Cancel
           </Button>
         </div>
