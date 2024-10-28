@@ -115,7 +115,11 @@ export default function OrderForm({
         >
           {textHandleSubmit}
         </Button>
-        <Button variant="outline" onClick={handleCancel}>
+        <Button
+          className="hover:bg-slate-200"
+          variant="outline"
+          onClick={handleCancel}
+        >
           Cancel
         </Button>
       </div>
