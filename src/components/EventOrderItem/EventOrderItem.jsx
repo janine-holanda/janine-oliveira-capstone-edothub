@@ -2,12 +2,14 @@ import acceptOrderIcon from "../../assets/icons/task_24dp_1E293B_FILL0_wght400_G
 import declineOrderIcon from "../../assets/icons/scan_delete_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import cancelOrderIcon from "../../assets/icons/delete_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import OrderStatus from "../OrderStatus/ OrderStatus";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 import { updateOrder, cancelOrder } from "../../services/order-api";
+import { ToastContainer, Zoom, toast } from "react-toastify";
 
 export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
   const [displayedOrder, setDisplayedOrder] = useState(order);
@@ -43,20 +45,31 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
     event.preventDefault();
 
     const newOrder = { ...order, status: "Accepted" };
-    putOrder(newOrder, order.order_id);
+
+    toast.success("You accepted the order", {
+      onClose: () => putOrder(newOrder, order.order_id),
+      transition: Zoom,
+    });
   };
 
   const handleDeclined = (event) => {
     event.preventDefault();
 
     const newOrder = { ...order, status: "Declined" };
-    putOrder(newOrder, order.order_id);
+
+    toast.error("You declined the order", {
+      onClose: () => putOrder(newOrder, order.order_id),
+      transition: Zoom,
+    });
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
 
-    deleteOrder(order.order_id);
+    toast.error("You deleted the order", {
+      onClose: () => deleteOrder(order.order_id),
+      transition: Zoom,
+    });
   };
 
   if (error) {
@@ -69,7 +82,7 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
         <Button
           variant="outline"
           onClick={handleAccept}
-          className={`p-2 ${isEventHost ? "hidden" : ""} ${
+          className={`p-2 hover:bg-slate-200 ${isEventHost ? "hidden" : ""} ${
             displayedOrder.status === "Accepted" ? "hidden" : ""
           }`}
         >
@@ -78,11 +91,15 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
         <Button
           variant="outline"
           onClick={handleDeclined}
-          className={`p-2 ${isEventHost ? "hidden" : ""}`}
+          className={`p-2 hover:bg-slate-200 ${isEventHost ? "hidden" : ""}`}
         >
           <img src={declineOrderIcon} alt="Decline Order Icon" />
         </Button>
-        <Button variant="outline" onClick={handleCancel} className="p-2">
+        <Button
+          variant="outline"
+          onClick={handleCancel}
+          className="p-2 hover:bg-slate-200"
+        >
           <img src={cancelOrderIcon} alt="Cancel Order Icon" />
         </Button>
       </div>
@@ -174,6 +191,11 @@ export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        pauseOnHover={false}
+      />
     </article>
   );
 }
