@@ -5,7 +5,6 @@ import OrderDashboardPage from "./pages/OrderDashboardPage/OrderDashboardPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage/OrderDetailsPage";
 import CreateOrderPage from "./pages/CreateOrderPage/CreateOrderPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import TestPage from "./pages/TestPage/ TestPage";
 
 export default function App() {
   const [isEventHost, setIsEventHost] = useState(null);
@@ -29,7 +28,6 @@ export default function App() {
             path="/createorder"
             element={<CreateOrderPage isEventHost={isEventHost} />}
           />
-          <Route path="/test" element={<TestPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
