@@ -22,13 +22,14 @@ export default function OrderDashboardPage({ isEventHost }) {
 
     const getOrdersList = async () => {
       try {
+        setIsOrdersListLoading(true);
         const response = await fetchOrdersList();
 
         setError("");
         setOrdersList(response);
-        setIsOrdersListLoading(false);
       } catch (error) {
         setError(error.message);
+      } finally {
         setIsOrdersListLoading(false);
       }
     };
@@ -58,11 +59,13 @@ export default function OrderDashboardPage({ isEventHost }) {
             <GeneralEventOrderList
               isEventHost={isEventHost}
               ordersList={ordersList}
+              getOrdersList={getOrdersList}
             />
             <h2 className="mt-16 mb-4">Accepted Events: </h2>
             <AcceptedEventOrderList
               isEventHost={isEventHost}
               ordersList={ordersList}
+              getOrdersList={getOrdersList}
             />
           </div>
           <Footer />

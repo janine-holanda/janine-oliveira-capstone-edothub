@@ -6,22 +6,53 @@ import declineOrderIcon from "../../assets/icons/scan_delete_24dp_1E293B_FILL0_w
 import cancelOrderIcon from "../../assets/icons/delete_24dp_1E293B_FILL0_wght400_GRAD0_opsz24.svg";
 import { useState } from "react";
 import OrderStatus from "../OrderStatus/ OrderStatus";
+import { updateOrder, cancelOrder } from "../../services/order-api";
 
-export default function EventOrderItem({ isEventHost, order }) {
+export default function EventOrderItem({ isEventHost, order, getOrdersList }) {
   const [displayedOrder, setDisplayedOrder] = useState(order);
+  const [error, setError] = useState("");
+
+  const putOrder = async (newOrder, orderId) => {
+    try {
+      await updateOrder(newOrder, orderId);
+      setDisplayedOrder(newOrder);
+      getOrdersList();
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const deleteOrder = async (orderId) => {
+    try {
+      await cancelOrder(orderId);
+      getOrdersList();
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   const handleAccept = (event) => {
     event.preventDefault();
-    setDisplayedOrder({ ...displayedOrder, status: "Accepted" });
-  };
-  const handleDeclined = (event) => {
-    event.preventDefault();
-    setDisplayedOrder({ ...displayedOrder, status: "Declined" });
-  };
-  const handleCancel = (event) => {
-    event.preventDefault();
-    setDisplayedOrder({ ...displayedOrder, status: "Cancelled" });
+    const newOrder = { ...order, status: "Accepted" };
+    putOrder(newOrder, order.order_id);
   };
 
+  const handleDeclined = (event) => {
+    event.preventDefault();
+    const newOrder = { ...order, status: "Declined" };
+    putOrder(newOrder, order.order_id);
+  };
+
+  const handleCancel = (event) => {
+    event.preventDefault();
+    deleteOrder(order.order_id);
+  };
+
+  if (error) {
+    return <h1 className="">{error.toUpperCase()}</h1>;
+  }
   return (
     <article className="border-[1px] rounded-lg border-e-cloud p-4 grid grid-cols-2 gap-y-4 hover:bg-yellow-100 cursor-pointer mb-4">
       <div className="flex gap-x-2 col-span-2 justify-end">
@@ -56,7 +87,7 @@ export default function EventOrderItem({ isEventHost, order }) {
       </div>
       <div>
         <h3 className="mb-1">Host Name</h3>
-        <p className="p1">{displayedOrder.event_name}</p>
+        <p className="p1">{displayedOrder.host_name}</p>
       </div>
       <div>
         <h3 className="mb-1">Date:</h3>
