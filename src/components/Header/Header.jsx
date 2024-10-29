@@ -9,7 +9,7 @@ export default function Header({ isEventHost }) {
   const splitLocation = pathname.split("/");
 
   return (
-    <header className="pt-6 pl-4 pr-4 bg-gradient-to-t from-rose-900 to-e-wine relative">
+    <header className="pt-6 pl-4 pr-4 bg-gradient-to-tl from-rose-950 to-e-wine relative">
       <div className="absolute right-4 flex gap-x-2 items-center">
         <div className="p-1 border-e-baby-pink border-2 rounded-2xl w-fit">
           <img
